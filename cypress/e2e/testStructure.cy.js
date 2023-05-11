@@ -14,7 +14,7 @@ describe('Context: My First Tests', () => {
     afterEach(() => {
         // similar to afterMethod in TestNG
     })
-    it('Opening a web application', () => {
+    it.skip('Opening a web application', () => {
         cy.visit('/registration_form');
     })
     it('Test2',()=>{
@@ -30,7 +30,7 @@ describe('Context: My First Tests', () => {
 
         expect(5).to.equal(5);
     })
-    it('Test5',()=>{
+    it.only('Test5',()=>{
 
         expect(true).to.equal(5=='5');
     })
