@@ -39,4 +39,32 @@ describe('find or get elements by using different locators',()=>{
 
     })
 
+    it('Check finding elements by traveling through DOM',()=>{
+        //Find the login button
+
+        cy.get('input[name = "username"]').parents('form').find('button').should('contain','Login').click()
+
+    })
+
+    it.only('Check different type of assertions',()=>{
+
+
+        //cypress itself use some assertions provided by Chai ,JQuery libraries 
+        //Should assertions
+        cy.get('#wooden_spoon').should('contain','Login')
+
+        //expect assertions
+        cy.get('#wooden_spoon').then((buttonElement)=>{
+
+            expect(buttonElement).to.have.text('Login')
+        })
+
+
+
+
+
+    })
+
+
+
 })
