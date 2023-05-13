@@ -15,7 +15,16 @@ describe('find or get elements by using different locators',()=>{
 
         cy.contains('Clicked on button two!').should('be.visible')
         
-                
+            
+        //find element with class attribute and create a list then select 3 rd one 
+        cy.get('.btn.btn-primary').then(($buttons)=>{
+            cy.wrap($buttons).eq(2).click();
+            //assert the textx
+            cy.contains('Clicked on button three!').should('be.visible')
+
+        
+        })
+
     })
 
    
