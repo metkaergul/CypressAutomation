@@ -54,6 +54,7 @@ describe('find or get elements by using different locators',()=>{
 
     })
 
+    //npx cypress --headless -b chrome
    
     })
 
