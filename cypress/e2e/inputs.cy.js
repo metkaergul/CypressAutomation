@@ -1,6 +1,5 @@
 /// <reference types='cypress'/>
 
-
 describe('Input Forms tests', () => {
   beforeEach('navigate to registration page', () => {
     // run before each test case, beforeMethod in TestNG
@@ -39,26 +38,60 @@ describe('Input Forms tests', () => {
         cy.get('[data-bv-icon-for="gender"]').should('be.visible');
 
         //third radio button is not checked
-        cy.wrap(radio).last().should('not.be.checked')
+        cy.wrap(radio).last().should('not.be.checked');
       });
   });
 
+  it.skip('Check different checkbox actions', () => {
+    //get all checkboxes we will select java and verify it is selected
 
-    it('Check different checkbox actions',()=>{
+    cy.get('[type="checkbox"]').then((checkboxes) => {
+      cy.wrap(checkboxes).eq(1).check().should('be.checked');
+      //uncheck java
+      cy.wrap(checkboxes).eq(1).uncheck().should('not.be.checked');
 
-            //get all checkboxes we will select java and verify it is selected
+      //verify third one has a value JavaScript and then check and verify the value
 
-            cy.get('[type="checkbox"]').then((checkboxes)=>{
+      cy.wrap(checkboxes).eq(2).should('have.value',"javascript")
+      .check().should('be.checked');
 
-        cy.wrap(checkboxes).eq(1).check().should('be.checked')
-        //uncheck java
-        cy.wrap(checkboxes).eq(1).uncheck().should('not.be.checked')
+      })
+    });
+
+    it.skip('check selection of a single choice from a select dropdown',()=>{
+        //Select one element
+            cy.get('select[name="job_title"]').select('SDET')
+        //assert that dropdown has correct text after selecting
+        cy.get('select[name="job_title"]').contains('SDET')
+
+    })
+
+    it('check selection of all selected dropdown options',()=>{
+        
+        //we will provide our test data through fixtures folder as JSON object ,then use that data to verify selected value 
+            cy.fixture('departments').then((departments)=>{
+
+                //GET all the options located under the department dropdown
+
+                cy.get('select[name="department"]>option').each((option,index)=>{
+                        //get each option text
+
+                 const optionText=option.text();
+
+                //  cy.log(optionText);
+                //  cy.log(index);
+
+                //     cy.log(departments[index]);
+                cy.get('select[name="department"]').select(optionText)
+                .should('have.value',option.val()).contains(departments[index]);
+
+                })
 
             })
-
-
     })
 
 
 
-});
+
+  });
+
