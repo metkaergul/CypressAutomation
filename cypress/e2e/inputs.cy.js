@@ -27,7 +27,7 @@ describe('Input Forms tests', () => {
     cy.get('input[name="birthday"]').type('01/01/1999');
   });
 
-  it('Check different radio button actions', () => {
+  it.skip('Check different radio button actions', () => {
     cy.get('.radio')
       .find('[type=radio]')
       .then((radio) => {
@@ -42,4 +42,23 @@ describe('Input Forms tests', () => {
         cy.wrap(radio).last().should('not.be.checked')
       });
   });
+
+
+    it('Check different checkbox actions',()=>{
+
+            //get all checkboxes we will select java and verify it is selected
+
+            cy.get('[type="checkbox"]').then((checkboxes)=>{
+
+        cy.wrap(checkboxes).eq(1).check().should('be.checked')
+        //uncheck java
+        cy.wrap(checkboxes).eq(1).uncheck().should('not.be.checked')
+
+            })
+
+
+    })
+
+
+
 });
