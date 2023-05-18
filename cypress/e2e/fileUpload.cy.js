@@ -21,17 +21,14 @@ describe('Context: My First Tests', () => {
   });
 
   it('Check upload function', () => {
-    //locator for choose file button
+    // locator for choose file button
     cy.get('input#file-upload').attachFile('users.png');
-    //click on upload button
-    cy.get('#file-submit').click()
-    //assert that path message is displayed
+    // click on upload button
+    cy.get('#file-submit').click();
+    // assert that path message is displayed
 
-    cy.get('#uploaded-files').then((uploadedFiles)=>{
-
-        cy.contains('users.png').should('be.visible')
-
-    })
-
+    cy.get('#uploaded-files').then((uploadedFiles) => {
+      cy.contains('users.png').should('be.visible');
+    });
   });
 });
